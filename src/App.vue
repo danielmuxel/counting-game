@@ -6,7 +6,6 @@
           <v-group v-for="(group, index) in groups" :key="`groups-${index}`" :config="{ ...group.position }">
             <v-circle :config="group.circle">
             </v-circle>
-            <!-- <v-text :config="{ text: index }"></v-text> -->
           </v-group>
         </v-layer>
       </v-stage>
