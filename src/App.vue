@@ -6,7 +6,7 @@
           <v-group v-for="(group, index) in groups" :key="`groups-${index}`" :config="{ ...group.position }">
             <v-circle :config="group.circle">
             </v-circle>
-            <v-text :config="{ text: index }"></v-text>
+            <!-- <v-text :config="{ text: index }"></v-text> -->
           </v-group>
         </v-layer>
       </v-stage>
@@ -52,17 +52,10 @@ export default {
           positionX = this.getRandomInt(this.configKonva.width - radius * 3) + radius
           positionY = this.getRandomInt(this.configKonva.height - radius * 3) + radius
 
-          console.group('CIRCLE ' + i);
-          console.log('New Positions: ', positionX, positionY)
-
           for (let j = 0; j < this.groups.length; j++) {
             const group = this.groups[j];
 
             let distance = (group.position.x - positionX) ** 2 + (group.position.y - positionY) ** 2
-            console.group('GROUP ' + j);
-            console.log('current group positions of ' + j, group.position.x, group.position.y)
-            console.log("distance", distance)
-            console.log("minDistance", minDistance)
 
             if (distance < minDistance) {
               isColliding = true
@@ -70,15 +63,9 @@ export default {
             } else {
               isColliding = false
             }
-            console.log("isColliding", isColliding)
-            console.groupEnd();
           }
 
-          console.log("isColliding", isColliding)
-          console.groupEnd();
         } while (isColliding)
-
-        console.log('pass througs counted: ', count)
 
         this.groups.push({
           position: {
